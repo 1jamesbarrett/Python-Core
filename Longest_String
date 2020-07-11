@@ -1,0 +1,51 @@
+# Here, we are planning to implement a simple sliding window methodology
+import time
+import timeit
+import random
+# input_string = random.getrandbits(9000000)  # use large value for testing speed
+# input_string = str(input_string)
+start_time = time.time()
+def longestUniqueSubsttr(input_string):
+    # Creating a set to store the last positions of occurrence
+    seen = {}
+    maximum_length = 0
+    start = 0   # starting the inital point of window to index 0
+
+    for end in range(len(input_string)):
+        if input_string[end] in seen:     # Checking if we have already seen the element or not
+            start = max(start, seen[input_string[end]] + 1) # If we have seen the number, move the start pointer to position after the last occurrence
+        seen[input_string[end]] = end  # Updating the last seen value of the character
+        maximum_length = max(maximum_length, end - start + 1)
+    return maximum_length
+
+
+# Driver Code
+input_string = "geeksforgeeks"
+# input_string = "12134567890"
+#
+# print(type(input_string))
+# print("The input input_string is", input_string, "with a length of ", len(input_string))
+length = longestUniqueSubsttr(input_string)
+print("The length of the longest non-repeating character subinput_string is", length)
+end_time = time.time()
+print((end_time - start_time), " seconds v1")
+###########################
+
+# ############### enumerate start ############################
+# slower in testing but more intuitive to write
+start_time = time.time()
+# input_string = "geeksforgeeks"
+# input_string = "12134567890"
+# print(input_string, "\n")
+
+seen = {}
+maximum_length = 0
+start = 0
+for ind, el in enumerate(input_string):
+    if el in seen:
+        start = max(start, seen[input_string[ind]] + 1)
+    seen[el] = ind  # Updating the last seen value of the character
+    maximum_length = max(maximum_length, ind - start + 1);
+print( maximum_length)
+end_time = time.time()
+print((end_time - start_time), " seconds v1")
