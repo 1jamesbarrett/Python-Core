@@ -1,0 +1,16 @@
+########################## reverse order,  identity all words that are palindromes ##################
+words = "Lol, this is a gag, I didn't laugh so much in a long time"
+# print(words)
+# print(words[::-1]) # print in reverse order
+import string
+new_words = words.translate(str.maketrans('', '', string.punctuation)) # remove punctuation
+new_words = new_words.lower()
+# print(string.punctuation)
+print("\n") # force new line in print out
+print("cleaned \n", new_words)
+
+########################## identity all words that are palindromes ##################
+for element in new_words.lower().split(" "):
+    # print(element)
+    if element == element[::-1] and len(element)>1:
+        print("palindrome ", element)
