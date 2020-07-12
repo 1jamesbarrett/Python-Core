@@ -1,0 +1,5 @@
+######################### supress future warning message
+# must go before pandas call
+import warnings
+warnings.simplefilter(action='ignore', category=FutureWarning)
+###################
